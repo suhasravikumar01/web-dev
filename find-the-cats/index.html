@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Find the Cats</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐈‍⬛</text></svg>">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="app">
+  <header class="top">
+    <div class="brand">
+      <h1>Find the Cats</h1>
+      <p class="sub">A little logic. A lot of curiosity.</p>
+    </div>
+    <div class="controls">
+      <label class="select-wrap">
+        <span class="sr">Difficulty</span>
+        <select id="difficulty" aria-label="Difficulty">
+          <option value="easy">Easy · 5×5</option>
+          <option value="medium">Medium · 7×7</option>
+          <option value="hard">Hard · 9×9</option>
+        </select>
+      </label>
+      <button class="btn" id="newGame">New game</button>
+      <button class="btn ghost" id="restart">Restart</button>
+      <button class="icon-btn" id="sound" aria-pressed="true" aria-label="Sound on" title="Sound">♪</button>
+      <button class="icon-btn" id="help" aria-label="How to play" title="How to play">?</button>
+    </div>
+  </header>
+
+  <section class="stats" aria-live="polite">
+    <div><b id="found">0 / 3</b><span>Cats found</span></div>
+    <div><b id="remaining">3</b><span>Remaining</span></div>
+    <div><b id="moves">0</b><span>Moves</span></div>
+    <div><b id="timer">00:00</b><span>Time</span></div>
+  </section>
+
+  <section class="board-wrap">
+    <div id="board" class="board" role="grid" aria-label="Game board"></div>
+  </section>
+
+  <footer><p>Find every cat. Think before you click.</p></footer>
+</main>
+
+<dialog id="helpDialog">
+  <h2>How to play</h2>
+  <p>Every cat hides under a tile. Click tiles to uncover them and find all the cats.</p>
+  <ul>
+    <li>No two cats share a row or a column.</li>
+    <li>No two cats touch, not even diagonally.</li>
+    <li>When you find a cat, its row, column and eight neighbors are crossed out. Those tiles are safe from cats and can’t be clicked.</li>
+    <li>Use the crossed-out tiles to work out where the remaining cats can be.</li>
+  </ul>
+  <div class="actions"><button class="btn" data-close>Got it</button></div>
+</dialog>
+
+<dialog id="confirmDialog">
+  <h2 id="confirmTitle">Start over?</h2>
+  <p id="confirmText">Your current game will be lost.</p>
+  <div class="actions">
+    <button class="btn ghost" id="confirmNo">Keep playing</button>
+    <button class="btn" id="confirmYes">Start over</button>
+  </div>
+</dialog>
+
+<dialog id="winDialog" class="win">
+  <h2>YOU FOUND THEM ALL!</h2>
+  <div class="win-stats">
+    <div><b id="winMoves">0</b><span>Moves</span></div>
+    <div><b id="winTime">00:00</b><span>Time</span></div>
+  </div>
+  <div class="actions">
+    <button class="btn" id="playAgain">Play again</button>
+    <button class="btn ghost" id="newDifficulty">New difficulty</button>
+  </div>
+  <div class="levels" id="levels" hidden>
+    <button class="btn ghost" data-level="easy">Easy</button>
+    <button class="btn ghost" data-level="medium">Medium</button>
+    <button class="btn ghost" data-level="hard">Hard</button>
+  </div>
+</dialog>
+
+<script src="script.js"></script>
+</body>
+</html>
